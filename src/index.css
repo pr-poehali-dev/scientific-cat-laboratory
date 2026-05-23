@@ -56,7 +56,6 @@
   html,
   body {
     height: 100%;
-    overflow: hidden;
   }
 
   body {
@@ -66,13 +65,14 @@
     -webkit-tap-highlight-color: transparent;
     -webkit-font-smoothing: antialiased;
     overscroll-behavior: none;
+    overflow: hidden;
   }
 
   #root {
     height: 100%;
-    overflow: hidden;
     display: flex;
     flex-direction: column;
+    overflow: hidden;
   }
 }
 

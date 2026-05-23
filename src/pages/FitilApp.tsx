@@ -105,14 +105,14 @@ const FitilApp: React.FC = () => {
         )}
       </main>
 
-      {/* Bottom navigation */}
+      {/* Bottom navigation — extra padding-bottom covers the Poehali platform bar */}
       <nav
         className="shrink-0 relative z-10"
         style={{
           background: 'rgba(15,10,26,0.97)',
           borderTop: '1px solid rgba(61,36,100,0.7)',
           backdropFilter: 'blur(16px)',
-          paddingBottom: 'env(safe-area-inset-bottom, 0px)',
+          paddingBottom: 'calc(env(safe-area-inset-bottom, 0px) + 48px)',
         }}
       >
         <div className="grid grid-cols-4">
