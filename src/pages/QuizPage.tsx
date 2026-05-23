@@ -77,70 +77,76 @@ const QuizPage: React.FC<QuizPageProps> = ({ onScoreUpdate, totalScore, totalAns
 
   if (phase === 'intro') {
     return (
-      <div className="flex flex-col h-full px-4 pt-6 pb-4">
-        <div className="text-center mb-6 animate-fade-in">
-          <div className="text-6xl mb-3 animate-float inline-block">🎯</div>
-          <h1 className="font-display text-2xl font-bold tracking-wide mb-1" style={{ color: 'var(--sand-light)' }}>
-            ПРАВДА ИЛИ ЛОЖЬ
-          </h1>
-          <p className="text-sm" style={{ color: 'rgba(245,230,200,0.6)' }}>
-            Научная викторина Профессора Фитиля
-          </p>
-        </div>
+      <div className="flex flex-col h-full">
+        {/* Скроллируемое содержимое */}
+        <div className="scrollable flex-1 px-4 pt-5 pb-2 space-y-3">
+          {/* Заголовок — компактный */}
+          <div className="flex items-center gap-3 animate-fade-in">
+            <div className="text-5xl animate-float inline-block">🎯</div>
+            <div>
+              <h1 className="font-display text-2xl font-bold tracking-wide leading-tight" style={{ color: 'var(--sand-light)' }}>
+                ПРАВДА<br />ИЛИ ЛОЖЬ
+              </h1>
+              <p className="text-xs mt-0.5" style={{ color: 'rgba(245,230,200,0.5)' }}>
+                Научная викторина Профессора Фитиля
+              </p>
+            </div>
+          </div>
 
-        <div className="glass-card rounded-2xl p-4 mb-4 animate-fade-in" style={{ animationDelay: '0.1s', opacity: 0 }}>
-          <div className="flex gap-2 items-start">
-            <span className="text-2xl">🐱</span>
-            <p className="text-sm italic leading-relaxed" style={{ color: 'rgba(245,230,200,0.9)' }}>
-              «Я подготовил 10 научных утверждений. Некоторые — чистая правда. Некоторые — популярные заблуждения, которые кожаные мешки повторяют уже столетиями. Будьте внимательны. Я слежу.»
+          {/* Слово Фитиля */}
+          <div className="glass-card rounded-2xl p-3 animate-fade-in" style={{ animationDelay: '0.1s', opacity: 0 }}>
+            <div className="flex gap-2 items-start">
+              <span className="text-xl shrink-0">🐱</span>
+              <p className="text-sm italic leading-relaxed" style={{ color: 'rgba(245,230,200,0.9)' }}>
+                «Я подготовил 10 научных утверждений. Некоторые — чистая правда, некоторые — популярные заблуждения. Будьте внимательны. Я слежу.»
+              </p>
+            </div>
+          </div>
+
+          {/* Статистика (если есть) */}
+          {totalAnswered > 0 && (
+            <div className="grid grid-cols-2 gap-2 animate-fade-in" style={{ animationDelay: '0.15s', opacity: 0 }}>
+              <div className="glass-card rounded-xl p-3 text-center">
+                <div className="font-display text-2xl font-bold" style={{ color: 'var(--orange-accent)' }}>{totalScore}</div>
+                <div className="text-xs mt-0.5" style={{ color: 'rgba(245,230,200,0.5)' }}>🐾 Лап заработано</div>
+              </div>
+              <div className="glass-card rounded-xl p-3 text-center">
+                <div className="font-display text-2xl font-bold" style={{ color: 'var(--neon-purple)' }}>{totalAnswered}</div>
+                <div className="text-xs mt-0.5" style={{ color: 'rgba(245,230,200,0.5)' }}>Вопросов решено</div>
+              </div>
+            </div>
+          )}
+
+          {/* Звания — компактно */}
+          <div className="glass-card rounded-2xl p-3 animate-fade-in" style={{ animationDelay: '0.2s', opacity: 0 }}>
+            <p className="font-display text-xs tracking-widest mb-2" style={{ color: 'rgba(245,230,200,0.4)' }}>
+              ЗВАНИЯ
             </p>
+            <div className="grid grid-cols-2 gap-x-3 gap-y-1.5">
+              {[
+                { range: '90–100%', title: '🏅 Гений-Лауреат', color: '#fbbf24' },
+                { range: '70–89%', title: '🔬 Ст. Лаборант', color: '#4ade80' },
+                { range: '50–69%', title: '📚 Стажёр', color: '#60a5fa' },
+                { range: '<50%', title: '🐾 Котёнок', color: '#c084fc' },
+              ].map(r => (
+                <div key={r.range} className="flex items-center justify-between">
+                  <span className="text-xs" style={{ color: r.color }}>{r.title}</span>
+                  <span className="text-xs" style={{ color: 'rgba(245,230,200,0.35)' }}>{r.range}</span>
+                </div>
+              ))}
+            </div>
           </div>
         </div>
 
-        {/* Total stats */}
-        {totalAnswered > 0 && (
-          <div className="grid grid-cols-2 gap-3 mb-4 animate-fade-in" style={{ animationDelay: '0.15s', opacity: 0 }}>
-            <div className="glass-card rounded-xl p-3 text-center">
-              <div className="font-display text-2xl font-bold" style={{ color: 'var(--orange-accent)' }}>
-                {totalScore}
-              </div>
-              <div className="text-xs mt-1" style={{ color: 'rgba(245,230,200,0.5)' }}>Лапок всего</div>
-            </div>
-            <div className="glass-card rounded-xl p-3 text-center">
-              <div className="font-display text-2xl font-bold" style={{ color: 'var(--neon-purple)' }}>
-                {totalAnswered}
-              </div>
-              <div className="text-xs mt-1" style={{ color: 'rgba(245,230,200,0.5)' }}>Вопросов решено</div>
-            </div>
-          </div>
-        )}
-
-        <div className="glass-card rounded-2xl p-4 mb-4 animate-fade-in" style={{ animationDelay: '0.2s', opacity: 0 }}>
-          <p className="font-display text-xs tracking-widest mb-2" style={{ color: 'rgba(245,230,200,0.4)' }}>
-            СИСТЕМА БАЛЛОВ
-          </p>
-          <div className="space-y-2">
-            {[
-              { range: '90–100%', title: '🏅 Гений-Лауреат', color: '#fbbf24' },
-              { range: '70–89%', title: '🔬 Старший Лаборант', color: '#4ade80' },
-              { range: '50–69%', title: '📚 Стажёр Фитиля', color: '#60a5fa' },
-              { range: '<50%', title: '🐾 Любопытный Котёнок', color: '#c084fc' },
-            ].map(r => (
-              <div key={r.range} className="flex items-center justify-between">
-                <span className="text-sm" style={{ color: r.color }}>{r.title}</span>
-                <span className="text-xs" style={{ color: 'rgba(245,230,200,0.4)' }}>{r.range}</span>
-              </div>
-            ))}
-          </div>
+        {/* Кнопка — всегда видна внизу */}
+        <div className="shrink-0 px-4 pb-4 pt-2">
+          <button
+            onClick={() => setPhase('question')}
+            className="w-full py-4 rounded-2xl btn-primary font-display text-base tracking-wider"
+          >
+            НАЧАТЬ ИСПЫТАНИЕ
+          </button>
         </div>
-
-        <button
-          onClick={() => setPhase('question')}
-          className="w-full py-4 rounded-2xl btn-primary font-display text-base tracking-wider mt-auto animate-fade-in"
-          style={{ animationDelay: '0.3s', opacity: 0 }}
-        >
-          НАЧАТЬ ИСПЫТАНИЕ
-        </button>
       </div>
     );
   }
@@ -148,52 +154,45 @@ const QuizPage: React.FC<QuizPageProps> = ({ onScoreUpdate, totalScore, totalAns
   if (phase === 'finish') {
     const rank = getRank(sessionScore, sessionAnswered);
     return (
-      <div className="flex flex-col h-full px-4 pt-6 pb-4">
-        <div className="text-center mb-6 animate-bounce-in">
-          <div className="text-6xl mb-2">{rank.emoji}</div>
-          <h1 className="font-display text-2xl font-bold" style={{ color: 'var(--sand-light)' }}>
-            РАУНД ЗАВЕРШЁН
-          </h1>
-        </div>
-
-        <div className="glass-card rounded-2xl p-5 mb-4 text-center animate-fade-in">
-          <div className="font-display text-6xl font-bold mb-1" style={{ color: rank.color }}>
-            {sessionScore}/{sessionAnswered}
-          </div>
-          <div className="font-display text-xl mb-2" style={{ color: rank.color }}>{rank.emoji} {rank.title}</div>
-          <div className="text-sm" style={{ color: 'rgba(245,230,200,0.6)' }}>
-            {percent}% верных ответов
+      <div className="flex flex-col h-full">
+        <div className="scrollable flex-1 px-4 pt-5 pb-2 space-y-3">
+          <div className="text-center animate-bounce-in">
+            <div className="text-5xl mb-1">{rank.emoji}</div>
+            <h1 className="font-display text-2xl font-bold" style={{ color: 'var(--sand-light)' }}>
+              РАУНД ЗАВЕРШЁН
+            </h1>
           </div>
 
-          {/* Progress bar */}
-          <div className="mt-4 h-2 rounded-full overflow-hidden" style={{ background: 'rgba(61,36,100,0.6)' }}>
-            <div
-              className="h-full rounded-full transition-all duration-1000"
-              style={{
-                width: `${percent}%`,
-                background: `linear-gradient(90deg, ${rank.color}, var(--neon-purple))`,
-              }}
-            />
+          <div className="glass-card rounded-2xl p-4 text-center animate-fade-in">
+            <div className="font-display text-5xl font-bold mb-1" style={{ color: rank.color }}>
+              {sessionScore}/{sessionAnswered}
+            </div>
+            <div className="font-display text-lg mb-1" style={{ color: rank.color }}>{rank.emoji} {rank.title}</div>
+            <div className="text-sm" style={{ color: 'rgba(245,230,200,0.6)' }}>{percent}% верных ответов</div>
+            <div className="mt-3 h-2 rounded-full overflow-hidden" style={{ background: 'rgba(61,36,100,0.6)' }}>
+              <div className="h-full rounded-full transition-all duration-1000"
+                style={{ width: `${percent}%`, background: `linear-gradient(90deg, ${rank.color}, var(--neon-purple))` }} />
+            </div>
           </div>
-        </div>
 
-        <div className="glass-card rounded-2xl p-4 mb-6 animate-fade-in" style={{ animationDelay: '0.1s', opacity: 0 }}>
-          <div className="flex gap-2 items-start">
-            <span className="text-2xl">🐱</span>
-            <p className="text-sm italic leading-relaxed" style={{ color: 'rgba(245,230,200,0.9)' }}>
-              {percent >= 90
-                ? '«Признаю — вы меня впечатлили. Я зафиксирую этот редкий случай в научном журнале. Под грифом "Аномалия".»'
-                : percent >= 70
-                  ? '«Неплохо. Действительно неплохо. Вы работаете в правильном направлении. Продолжайте — пока.»'
-                  : percent >= 50
-                    ? '«Значит, половину вы всё же знали. Это уже что-то. Рекомендую изучить теорию внимательнее.»'
-                    : '«Хм. Ну что же... Рекомендую вернуться в лабораторию и перечитать материалы. Без обид — наука требует времени.»'
-              }
-            </p>
+          <div className="glass-card rounded-2xl p-3 animate-fade-in" style={{ animationDelay: '0.1s', opacity: 0 }}>
+            <div className="flex gap-2 items-start">
+              <span className="text-xl shrink-0">🐱</span>
+              <p className="text-sm italic leading-relaxed" style={{ color: 'rgba(245,230,200,0.9)' }}>
+                {percent >= 90
+                  ? '«Признаю — вы меня впечатлили. Зафиксирую в журнале. Под грифом "Аномалия".»'
+                  : percent >= 70
+                    ? '«Неплохо. Вы работаете в правильном направлении. Продолжайте.»'
+                    : percent >= 50
+                      ? '«Половину знали — это уже что-то. Рекомендую изучить теорию внимательнее.»'
+                      : '«Рекомендую вернуться в лабораторию и перечитать материалы. Наука требует времени.»'
+                }
+              </p>
+            </div>
           </div>
         </div>
 
-        <div className="space-y-3 mt-auto">
+        <div className="shrink-0 px-4 pb-4 pt-2">
           <button
             onClick={handleRestart}
             className="w-full py-4 rounded-2xl btn-primary font-display text-base tracking-wider"
