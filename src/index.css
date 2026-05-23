@@ -236,3 +236,22 @@
     transform: scale(0.97);
   }
 }
+
+/* ── Уменьшаем плашку платформы Поехали ── */
+#pp-widget-root,
+#pp-widget,
+.pp-widget,
+[class*="pp-bar"],
+[class*="ppBar"],
+[id*="pp-bar"] {
+  transform: scale(0.6) !important;
+  transform-origin: bottom center !important;
+  opacity: 0.65 !important;
+  transition: opacity 0.2s !important;
+}
+
+#pp-widget-root:hover,
+#pp-widget:hover,
+.pp-widget:hover {
+  opacity: 0.9 !important;
+}
