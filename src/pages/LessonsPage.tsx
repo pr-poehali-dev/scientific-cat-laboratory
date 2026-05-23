@@ -33,15 +33,14 @@ const LessonModal: React.FC<{ lesson: Lesson; onClose: () => void }> = ({ lesson
       className="animate-fade-in"
       style={{
         position: 'fixed',
-        inset: 0,
+        top: 0,
+        left: 0,
+        right: 0,
+        bottom: 0,
         zIndex: 9999,
         background: 'var(--lab-dark)',
         display: 'flex',
         flexDirection: 'column',
-        maxWidth: '448px',
-        left: '50%',
-        transform: 'translateX(-50%)',
-        width: '100%',
       }}
     >
       {/* Top bar */}
@@ -110,8 +109,8 @@ const LessonModal: React.FC<{ lesson: Lesson; onClose: () => void }> = ({ lesson
           ПОНЯЛ, ПРОФЕССОР!
         </button>
 
-        {/* Отступ под плашку платформы */}
-        <div style={{ height: '60px' }} />
+        {/* Отступ под плашку платформы Поехали */}
+        <div style={{ height: '80px' }} />
       </div>
     </div>,
     document.body

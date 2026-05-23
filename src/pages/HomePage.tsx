@@ -34,14 +34,9 @@ const HomePage: React.FC<HomePageProps> = ({ onNavigate, stats }) => {
     <div className="scrollable h-full px-4 pt-6 pb-4">
       {/* Header */}
       <div className="text-center mb-6 animate-fade-in">
-        <div className="inline-block relative">
+        <div className="inline-block">
           <div className="text-7xl mb-1 animate-float inline-block" style={{ filter: 'drop-shadow(0 0 18px rgba(191,95,255,0.6))' }}>
             {blinking ? '😺' : '🐱'}
-          </div>
-          {/* Lab badge */}
-          <div className="absolute -top-1 -right-2 bg-neon-purple text-white text-xs font-oswald px-2 py-0.5 rounded-full"
-            style={{ fontSize: '10px', background: 'var(--neon-purple)' }}>
-            PhD
           </div>
         </div>
 
