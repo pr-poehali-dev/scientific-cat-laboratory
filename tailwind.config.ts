@@ -18,6 +18,10 @@ export default {
 			}
 		},
 		extend: {
+			fontFamily: {
+				golos: ['Golos Text', 'sans-serif'],
+				oswald: ['Oswald', 'sans-serif'],
+			},
 			colors: {
 				border: 'hsl(var(--border))',
 				input: 'hsl(var(--input))',
@@ -52,15 +56,23 @@ export default {
 					DEFAULT: 'hsl(var(--card))',
 					foreground: 'hsl(var(--card-foreground))'
 				},
-				sidebar: {
-					DEFAULT: 'hsl(var(--sidebar-background))',
-					foreground: 'hsl(var(--sidebar-foreground))',
-					primary: 'hsl(var(--sidebar-primary))',
-					'primary-foreground': 'hsl(var(--sidebar-primary-foreground))',
-					accent: 'hsl(var(--sidebar-accent))',
-					'accent-foreground': 'hsl(var(--sidebar-accent-foreground))',
-					border: 'hsl(var(--sidebar-border))',
-					ring: 'hsl(var(--sidebar-ring))'
+				sand: {
+					50: '#fdf8ef',
+					100: '#f5e6c8',
+					200: '#edcf98',
+					300: '#e0b068',
+					400: '#d4923e',
+				},
+				neon: {
+					purple: '#bf5fff',
+					violet: '#9b30ff',
+					pink: '#ff4dc4',
+				},
+				lab: {
+					dark: '#0f0a1a',
+					medium: '#1a1025',
+					card: '#221535',
+					border: '#3d2464',
 				}
 			},
 			borderRadius: {
@@ -70,25 +82,76 @@ export default {
 			},
 			keyframes: {
 				'accordion-down': {
-					from: {
-						height: '0'
-					},
-					to: {
-						height: 'var(--radix-accordion-content-height)'
-					}
+					from: { height: '0' },
+					to: { height: 'var(--radix-accordion-content-height)' }
 				},
 				'accordion-up': {
-					from: {
-						height: 'var(--radix-accordion-content-height)'
-					},
-					to: {
-						height: '0'
-					}
+					from: { height: 'var(--radix-accordion-content-height)' },
+					to: { height: '0' }
+				},
+				'fade-in': {
+					from: { opacity: '0', transform: 'translateY(16px)' },
+					to: { opacity: '1', transform: 'translateY(0)' }
+				},
+				'scale-in': {
+					from: { opacity: '0', transform: 'scale(0.92)' },
+					to: { opacity: '1', transform: 'scale(1)' }
+				},
+				'float': {
+					'0%, 100%': { transform: 'translateY(0px)' },
+					'50%': { transform: 'translateY(-8px)' }
+				},
+				'bubble': {
+					'0%': { transform: 'translateY(0) scale(1)', opacity: '0.8' },
+					'100%': { transform: 'translateY(-40px) scale(0.5)', opacity: '0' }
+				},
+				'orbit': {
+					from: { transform: 'rotate(0deg) translateX(36px) rotate(0deg)' },
+					to: { transform: 'rotate(360deg) translateX(36px) rotate(-360deg)' }
+				},
+				'glow-pulse': {
+					'0%, 100%': { boxShadow: '0 0 8px 2px rgba(191,95,255,0.4)' },
+					'50%': { boxShadow: '0 0 20px 6px rgba(191,95,255,0.8)' }
+				},
+				'spin-slow': {
+					from: { transform: 'rotate(0deg)' },
+					to: { transform: 'rotate(360deg)' }
+				},
+				'beam': {
+					'0%': { opacity: '0', transform: 'scaleX(0)' },
+					'100%': { opacity: '1', transform: 'scaleX(1)' }
+				},
+				'slide-up': {
+					from: { opacity: '0', transform: 'translateY(30px)' },
+					to: { opacity: '1', transform: 'translateY(0)' }
+				},
+				'bounce-in': {
+					'0%': { transform: 'scale(0.3)', opacity: '0' },
+					'60%': { transform: 'scale(1.1)' },
+					'100%': { transform: 'scale(1)', opacity: '1' }
+				},
+				'shake': {
+					'0%, 100%': { transform: 'translateX(0)' },
+					'20%': { transform: 'translateX(-6px)' },
+					'40%': { transform: 'translateX(6px)' },
+					'60%': { transform: 'translateX(-4px)' },
+					'80%': { transform: 'translateX(4px)' }
 				}
 			},
 			animation: {
 				'accordion-down': 'accordion-down 0.2s ease-out',
-				'accordion-up': 'accordion-up 0.2s ease-out'
+				'accordion-up': 'accordion-up 0.2s ease-out',
+				'fade-in': 'fade-in 0.4s ease-out forwards',
+				'scale-in': 'scale-in 0.3s ease-out forwards',
+				'float': 'float 3s ease-in-out infinite',
+				'bubble': 'bubble 1.5s ease-in-out infinite',
+				'orbit': 'orbit 4s linear infinite',
+				'glow-pulse': 'glow-pulse 2s ease-in-out infinite',
+				'spin-slow': 'spin-slow 12s linear infinite',
+				'beam': 'beam 0.6s ease-out forwards',
+				'slide-up': 'slide-up 0.5s ease-out forwards',
+				'bounce-in': 'bounce-in 0.5s ease-out forwards',
+				'shake': 'shake 0.4s ease-in-out forwards',
 			}
 		}
 	},
